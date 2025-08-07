@@ -1,0 +1,24 @@
+name: Post file in workflow
+on: [push]
+jobs:
+  post-file-in-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post a random file
+        run: |
+          pwd
+          ls -a
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+          git config user.name "github-action[bot]"
+          git config user.email "github-action[bot]@users.noreply.github.com" 
+          git fetch
+          git checkout main
+          git branch --set-upstream-to=origin/main
+          git pull
+          ls -a
+          echo "hello $RANDOM" >> random.txt 
+          ls -a
+          git add -A
+          git commit -m "Add randon file"
+          git push
