@@ -11,8 +11,8 @@ jobs:
           pwd
           ls -a
           echo "Hello $RANDOM" >> random.txt
-          git config user.name "my-bot"
-          git config user.email "my-super-bot@bot.com"
+          git config user.name "github-action[bot]"
+          git config user.email "github-action[bot]@users.noreply.github.com"
           git add random.txt
           git commit -m "Add random file" || echo "No changes to commit"
           git push
