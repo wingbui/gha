@@ -7,7 +7,7 @@ jobs:
       issues: write
     steps:
       - name: Checkout repository a random file
-        uses: actions/checkout@v4
+        uses: actions/checkout@v1
       - name: create and commit random file
         run: |
           pwd
