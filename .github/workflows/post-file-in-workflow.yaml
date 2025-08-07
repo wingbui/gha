@@ -6,8 +6,6 @@ jobs:
     steps:
       - name: Checkout repository a random file
         uses: actions/checkout@v4
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
       - name: create and commit random file
         run: |
           pwd
