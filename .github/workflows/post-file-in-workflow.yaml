@@ -4,22 +4,17 @@ jobs:
   post-file-in-workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Post a random file
+      - name: Checkout repository a random file
+        uses: actions/checkout@v4
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+      - name: create and commit random file
         run: |
           pwd
           ls -a
-          git init
-          git branch -m main
-          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
-          git config --global user.name "my-bot"
-          git config --global user.email "my-super-bot@bot.com"
-          git fetch
-          git checkout main
-          git branch --set-upstream-to=origin/main
-          git pull
-          ls -a
-          echo "hello $RANDOM" >> random.txt 
-          ls -a
-          git add -A
-          git commit -m "Add randon file"
+          echo "Hello $RANDOM" >> random.txt
+          git config user.name "my-bot"
+          git config user.email "my-super-bot@bot.com"
+          git add random.txt
+          git commit -m "Add random file" || echo "No changes to commit"
           git push
