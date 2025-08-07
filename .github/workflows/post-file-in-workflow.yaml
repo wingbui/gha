@@ -13,8 +13,8 @@ jobs:
           git config user.name "github-action[bot]"
           git config user.email "github-action[bot]@users.noreply.github.com" 
           git fetch
-          git checkout main
-          git branch --set-upstream-to=origin/main
+          git checkout master
+          git branch --set-upstream-to=origin/master
           git pull
           ls -a
           echo "hello $RANDOM" >> random.txt 
