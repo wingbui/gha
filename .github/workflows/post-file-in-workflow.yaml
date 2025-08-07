@@ -3,6 +3,8 @@ on: [push]
 jobs:
   post-file-in-workflow:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Checkout repository a random file
         uses: actions/checkout@v4
