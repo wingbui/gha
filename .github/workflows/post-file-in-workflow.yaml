@@ -6,18 +6,19 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Checkout repository a random file
-        uses: actions/checkout@v4
-        with:
-          ref: ${{github.ref_name}}
       - name: create and commit random file
         run: |
           pwd
           ls -a
-          echo "Hello $RANDOM" >> random.txt
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git config user.name "github-action[bot]"
           git config user.email "github-action[bot]@users.noreply.github.com"
-          git checkout ${{github.ref_name}}
+          git fetch
+          git checkout main
+          git branch --set-upstream-to=origin/main
+          git pull
+          echo "Hello $RANDOM" >> random.txt
           git add random.txt
           git commit -m "Add random file" || echo "No changes to commit"
-          git push ${{github.ref_name}}
+          git push
